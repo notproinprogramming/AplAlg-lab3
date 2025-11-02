@@ -307,7 +307,7 @@ class WOrGraph : public OrGraph {
             std::cout << "===============\n";
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
-                    std::cout << adj_matr[i][j] << " ";
+                    std::cout << adj_matr[i][j] << "\t";
                 }
                 std::cout << std::endl;
             }
@@ -391,6 +391,41 @@ class WOrGraph : public OrGraph {
         void
         PrintFullDijkstra(const std::vector<std::vector<double>> &matr_routes) {
             std::cout << "===============\n" << "\t FullDijkstra:\n";
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    std::cout << matr_routes[i][j] << "\t";
+                }
+                std::cout << std::endl;
+            }
+            std::cout << "===============\n";
+        }
+        std::vector<std::vector<double>> FloidUorshal() {
+            std::vector<std::vector<double>> matr_routes;
+            for (int f = 0; f < n; f++) {
+                matr_routes.push_back(std::vector<double>(n, INF));
+                for (int g = 0; g < n; g++) {
+                    matr_routes[f][g] = adj_matr[f][g];
+                }
+            }
+            for (int k = 0; k < n; k++) {
+                for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < n; j++) {
+                        if (i == j) {
+                            matr_routes[i][j] = 0;
+                        } else {
+                            matr_routes[i][j] =
+                                std::min(matr_routes[i][j],
+                                         matr_routes[i][k] + matr_routes[k][j]);
+                        }
+                    }
+                }
+            }
+
+            return matr_routes;
+        }
+        void
+        PrintFloidUorshal(const std::vector<std::vector<double>> &matr_routes) {
+            std::cout << "===============\n" << "\t\t FloidUorshala: \n";
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     std::cout << matr_routes[i][j] << "\t";

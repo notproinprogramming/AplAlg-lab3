@@ -17,17 +17,19 @@ int main() {
 
     G.PrintFullDijkstra(G.FullDijkstra());
 
-    cout << "======================\n";
-    for (int i = 1; i <= 10; i++) {
-        for (int j = 1; j <= 10; j++) {
-            if (i != j) {
-                pair = G.Dijkstra(i, j);
-                cout << pair.second << "\t\t";
-            } else {
-                cout << 0 << "\t";
-            }
-        }
-        cout << endl;
-    }
-    cout << "======================";
+    /*   cout << "======================\n";
+       for (int i = 1; i <= 10; i++) {
+           for (int j = 1; j <= 10; j++) {
+               if (i != j) {
+                   pair = G.Dijkstra(i, j);
+                   cout << pair.second << "\t\t";
+               } else {
+                   cout << 0 << "\t";
+               }
+           }
+           cout << endl;
+       }
+       cout << "======================";*/
+
+    G.PrintFloidUorshal(G.FloidUorshal());
 }
